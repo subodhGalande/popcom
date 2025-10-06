@@ -29,7 +29,7 @@ const Hero = () => {
         ease: "power3.out",
         stagger: 0.15,
       },
-      "-=0.5", // overlap slightly with text animation
+      "-=0.5",
     );
   });
 

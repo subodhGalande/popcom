@@ -8,21 +8,40 @@ gsap.registerPlugin(ScrollTrigger);
 
 const TopSeller = () => {
   const textRef = useRef();
+  const imageRef = useRef();
 
   useGSAP(() => {
-    gsap.timeline().from(textRef.current, {
-      duration: 0.15,
-      opacity: 0,
-      y: 50,
-      ease: "power3.in",
-      stagger: 1,
-      scrollTrigger: {
-        trigger: textRef.current,
-        start: "top 100%",
-        end: "+=200",
-        scrub: 2,
-      },
-    });
+    gsap
+      .timeline()
+      .from(textRef.current.children, {
+        y: 50,
+        opacity: 0,
+        scale: 0.95,
+        duration: 0.8,
+        ease: "power3.out",
+        stagger: 0.15,
+
+        scrollTrigger: {
+          trigger: textRef.current,
+          start: "top 100%",
+          end: "+=100",
+          scrub: 2,
+        },
+      })
+      .from(imageRef.current.children, {
+        y: 50,
+        opacity: 0,
+        scale: 0.95,
+        duration: 0.8,
+        ease: "power3.out",
+        stagger: 0.15,
+        scrollTrigger: {
+          trigger: imageRef.current,
+          start: "top 50%",
+          end: "+=200",
+          scrub: 2,
+        },
+      });
   });
 
   return (
@@ -55,7 +74,10 @@ const TopSeller = () => {
 
       {/* image section */}
       <div className="mt-12 h-96">
-        <div className="relative grid w-full shrink-0 grid-cols-2 items-end gap-4 sm:grid-cols-4 sm:gap-4">
+        <div
+          ref={imageRef}
+          className="relative grid w-full shrink-0 grid-cols-2 items-end gap-4 sm:grid-cols-4 sm:gap-4"
+        >
           {/* images */}
           <div className="mb-4 flex flex-col sm:mb-0">
             <img

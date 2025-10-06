@@ -1,8 +1,51 @@
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { useRef } from "react";
+
 const WhyChooseUs = () => {
+  const section1Ref = useRef();
+  const section2Ref = useRef();
+  useGSAP(() => {
+    gsap
+      .timeline()
+      .from(section1Ref.current.children, {
+        y: 50,
+        opacity: 0,
+        scale: 0.95,
+        duration: 0.8,
+        ease: "power3.out",
+        stagger: 0.15,
+
+        scrollTrigger: {
+          trigger: section1Ref.current,
+          start: "top 50%",
+          end: "+=100",
+          scrub: 2,
+        },
+      })
+      .from(section2Ref.current.children, {
+        y: 50,
+        opacity: 0,
+        scale: 0.95,
+        duration: 0.8,
+        ease: "power3.out",
+        stagger: 0.15,
+        scrollTrigger: {
+          trigger: section2Ref.current,
+          start: "top 40%",
+          end: "+=100",
+          scrub: 2,
+        },
+      });
+  });
+
   return (
     <section className="mx-auto max-w-6xl px-4 sm:mt-16 sm:px-8 lg:mt-40">
       {/* section 1 */}
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:h-[400px]">
+      <div
+        ref={section1Ref}
+        className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:h-[400px]"
+      >
         {/* image */}
         <div className="">
           <img
@@ -38,7 +81,10 @@ const WhyChooseUs = () => {
       </div>
 
       {/* section 2 */}
-      <div className="mt-4 grid grid-cols-2 grid-rows-2 gap-4 lg:max-w-6xl lg:grid-cols-9 lg:grid-rows-1 lg:gap-6">
+      <div
+        ref={section2Ref}
+        className="mt-4 grid grid-cols-2 grid-rows-2 gap-4 lg:max-w-6xl lg:grid-cols-9 lg:grid-rows-1 lg:gap-6"
+      >
         <div className="bg-primary-light col-span-1 flex rounded-2xl p-4 sm:rounded-4xl sm:px-6 sm:py-6 md:col-span-1 lg:col-span-2">
           <div className="flex flex-col justify-between gap-4">
             <h1 className="text-base">100% authentic Product</h1>

@@ -1,9 +1,32 @@
 import { ArrowUpRight } from "lucide-react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { useRef } from "react";
 
 const Showcase = () => {
+  const cardRef = useRef();
+
+  useGSAP(() => {
+    gsap.timeline().from(cardRef.current, {
+      opacity: 0,
+      scale: 0.85,
+      duration: 0.8,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: cardRef.current,
+        start: "top 50%",
+        end: "+=100",
+        scrub: 1,
+      },
+    });
+  });
+
   return (
     <section className="mx-auto mt-32 max-w-6xl px-4 sm:px-8">
-      <div className="bg-accent-gray flex flex-col justify-center rounded-2xl sm:flex-row sm:rounded-4xl lg:h-96">
+      <div
+        ref={cardRef}
+        className="bg-accent-gray flex flex-col justify-center rounded-2xl sm:flex-row sm:rounded-4xl lg:h-96"
+      >
         {/* text */}
         <div className="flex flex-col justify-center gap-y-6 px-8 pt-8 sm:w-1/2 lg:gap-8 lg:px-10 lg:pt-2">
           {" "}
