@@ -17,9 +17,9 @@ function App() {
       <WhyChooseUs />
       <Showcase />
       <Products />
-      {/* <Influencers />
+      <Influencers />
       <Reviews />
-      <Footer /> */}
+      <Footer />
     </>
   );
 }

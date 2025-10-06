@@ -22,7 +22,7 @@ const items = [
 
 const Products = () => {
   return (
-    <section className="mx-auto mt-16 max-w-6xl px-4 sm:mt-20 sm:px-8">
+    <section className="mx-auto mt-16 max-w-6xl px-4 sm:mt-32 sm:px-8">
       {/* Heading */}
       <div className="space-y-4 text-center">
         <h1 className="font-heading text-4xl font-bold sm:text-4xl md:text-5xl">

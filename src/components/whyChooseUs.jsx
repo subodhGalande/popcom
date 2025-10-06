@@ -1,8 +1,8 @@
 const WhyChooseUs = () => {
   return (
-    <section className="mx-auto max-w-6xl px-4 pt-24 sm:mt-16 sm:px-8">
+    <section className="mx-auto max-w-6xl px-4 sm:mt-16 sm:px-8 lg:mt-40">
       {/* section 1 */}
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:h-[400px]">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:h-[400px]">
         {/* image */}
         <div className="">
           <img
@@ -38,10 +38,10 @@ const WhyChooseUs = () => {
       </div>
 
       {/* section 2 */}
-      <div className="mt-4 grid grid-cols-2 grid-rows-2 gap-4 sm:max-w-6xl sm:grid-cols-9 sm:gap-6">
-        <div className="bg-primary-light col-span-1 flex rounded-2xl p-4 sm:col-span-2 sm:rounded-4xl sm:px-6 sm:py-6">
+      <div className="mt-4 grid grid-cols-2 grid-rows-2 gap-4 lg:max-w-6xl lg:grid-cols-9 lg:grid-rows-1 lg:gap-6">
+        <div className="bg-primary-light col-span-1 flex rounded-2xl p-4 sm:rounded-4xl sm:px-6 sm:py-6 md:col-span-1 lg:col-span-2">
           <div className="flex flex-col justify-between gap-4">
-            <h1 className="">100% authentic Product</h1>
+            <h1 className="text-base">100% authentic Product</h1>
             <p className="text-xs">
               prominently display a clear 100% Authentic Guarantee on your
               product
@@ -51,10 +51,10 @@ const WhyChooseUs = () => {
             </button>
           </div>
         </div>
-        <div className="bg-accent-gray col-span-1 flex rounded-2xl p-4 sm:col-span-2 sm:rounded-4xl sm:px-6 sm:py-6">
+        <div className="bg-accent-gray flex rounded-2xl p-4 sm:px-6 sm:py-6 md:col-span-1 lg:col-span-2 lg:rounded-4xl">
           {" "}
           <div className="flex flex-col justify-between gap-4">
-            <h1 className="">Free and Easy Return</h1>
+            <h1 className="text-base">Free and Easy Return</h1>
             <p className="text-xs">
               prominently display a clear 100% Authentic Guarantee on your
               product
@@ -64,10 +64,10 @@ const WhyChooseUs = () => {
             </button>
           </div>
         </div>
-        <div className="bg-accent-gray col-span-1 flex rounded-2xl p-4 sm:col-span-2 sm:rounded-4xl sm:px-6 sm:py-6">
+        <div className="bg-accent-gray flex rounded-2xl p-4 sm:rounded-4xl sm:px-6 sm:py-6 md:col-span-1 lg:col-span-2">
           {" "}
           <div className="flex flex-col justify-between gap-4">
-            <h1 className="">Safe Payments</h1>
+            <h1 className="text-base">Safe Payments</h1>
             <p className="text-xs">
               prominently display a clear 100% Authentic Guarantee on your
               product
@@ -77,7 +77,7 @@ const WhyChooseUs = () => {
             </button>
           </div>
         </div>
-        <div className="col-span-1 overflow-hidden rounded-2xl sm:col-span-3 sm:rounded-4xl">
+        <div className="overflow-hidden rounded-2xl sm:rounded-4xl md:col-span-1 lg:col-span-3">
           <img
             className="h-full w-full rounded-2xl object-cover sm:aspect-video"
             src="/why-choose-us/why-2.jpg"

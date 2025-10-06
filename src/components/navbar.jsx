@@ -1,12 +1,43 @@
 import { useState } from "react";
 import { Search, Menu, X } from "lucide-react";
+import { useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+gsap.registerPlugin(useGSAP);
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const navbarRef = useRef();
+  const mobileNav = useRef();
+
+  useGSAP(() => {
+    gsap.from(navbarRef.current, {
+      y: -100,
+      duration: 1,
+      opacity: 0,
+      ease: "power2.out",
+    });
+  });
+  useGSAP(
+    () => {
+      if (menuOpen) {
+        gsap.timeline().from(mobileNav.current, {
+          duration: 0.25,
+          x: 50,
+          opacity: 0,
+          scalex: 1,
+        });
+      }
+    },
+    { dependencies: [menuOpen] },
+  );
 
   return (
-    <header className="top-0 z-50 mt-8 font-bold">
-      <nav className="mx-auto flex items-center justify-between px-4 md:max-w-6xl">
+    <header className="relative top-0 mt-8 font-bold">
+      <nav
+        ref={navbarRef}
+        className="relative z-50 mx-auto flex items-center justify-between px-4 md:max-w-6xl"
+      >
         {/* Left links - hidden on mobile */}
         <div className="hidden w-1/3 items-center justify-around md:flex">
           <a href="">Home</a>
@@ -39,7 +70,10 @@ export default function Navbar() {
 
       {/* Mobile dropdown menu */}
       {menuOpen && (
-        <div className="absolute top-20 left-0 z-40 w-full bg-[#fff] shadow-md md:hidden">
+        <div
+          ref={mobileNav}
+          className="absolute top-full left-0 z-[9999] w-full bg-[#fff] shadow-md md:hidden"
+        >
           <div className="flex flex-col items-center gap-6 py-6 text-lg">
             <a href="">Home</a>
             <a href="">Influencers</a>

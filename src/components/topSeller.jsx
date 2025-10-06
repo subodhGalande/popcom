@@ -1,10 +1,37 @@
+import { useRef } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const TopSeller = () => {
+  const textRef = useRef();
+
+  useGSAP(() => {
+    gsap.timeline().from(textRef.current, {
+      duration: 0.15,
+      opacity: 0,
+      y: 50,
+      ease: "power3.in",
+      stagger: 1,
+      scrollTrigger: {
+        trigger: textRef.current,
+        start: "top 100%",
+        end: "+=200",
+        scrub: 2,
+      },
+    });
+  });
+
   return (
     <section className="mx-auto mt-16 max-w-6xl px-4 sm:px-8">
       {/* text section */}
-      <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center sm:gap-0">
+      <div
+        ref={textRef}
+        className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center sm:gap-0"
+      >
         {/* left */}
         <div>
           <div className="outline-button text-xs sm:text-sm">
@@ -28,16 +55,7 @@ const TopSeller = () => {
 
       {/* image section */}
       <div className="mt-12 h-96">
-        <div className="relative grid w-full grid-cols-2 items-end gap-4 sm:grid-cols-4 sm:gap-4">
-          {/* arrows */}
-          {/* <div className="bg-accent-gray absolute top-14 right-0 flex w-fit gap-x-2 rounded-full p-1">
-            <div className="rounded-full bg-[#ffffff] p-2">
-              <ArrowLeft className="h-3 w-3" />
-            </div>
-            <div className="rounded-full bg-[#ffffff] p-2">
-              <ArrowRight className="h-3 w-3" />
-            </div>
-          </div> */}
+        <div className="relative grid w-full shrink-0 grid-cols-2 items-end gap-4 sm:grid-cols-4 sm:gap-4">
           {/* images */}
           <div className="mb-4 flex flex-col sm:mb-0">
             <img
