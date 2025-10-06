@@ -23,7 +23,7 @@ const TopSeller = () => {
 
         scrollTrigger: {
           trigger: textRef.current,
-          start: "top 100%",
+          start: "top 90%",
           end: "+=100",
           scrub: 2,
         },
@@ -37,7 +37,7 @@ const TopSeller = () => {
         stagger: 0.15,
         scrollTrigger: {
           trigger: imageRef.current,
-          start: "top 50%",
+          start: "top 90%",
           end: "+=200",
           scrub: 2,
         },

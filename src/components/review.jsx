@@ -1,4 +1,7 @@
 import { Star } from "lucide-react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { useRef } from "react";
 
 const arr = [
   {
@@ -10,11 +13,48 @@ const arr = [
 ];
 
 const Reviews = () => {
+  const heading = useRef();
+  const card = useRef();
+
+  useGSAP(() => {
+    gsap
+      .timeline()
+      .from(heading.current, {
+        y: 50,
+        opacity: 0,
+        scale: 0.95,
+        duration: 0.8,
+        ease: "power3.out",
+        stagger: 0.15,
+        markers: true,
+        scrollTrigger: {
+          trigger: heading.current,
+          start: "top 70%",
+          end: "+=100",
+          scrub: 2,
+        },
+      })
+      .from(card.current.children, {
+        y: -50,
+        opacity: 0,
+        scale: 0.95,
+        duration: 0.8,
+        ease: "power3.out",
+        stagger: 0.15,
+        scrollTrigger: {
+          trigger: card.current,
+          start: "top 80%",
+          end: "+=100",
+          scrub: 2,
+        },
+      });
+  });
+
   return (
     <section className="mx-auto mt-32 max-w-6xl">
       {" "}
       <div>
-        <div className="space-y-4">
+        <div ref={heading} className="space-y-4">
           <h1 className="font-heading text-center text-4xl font-bold md:text-5xl">
             Reviews
           </h1>
@@ -25,11 +65,14 @@ const Reviews = () => {
         </div>
       </div>
       <div className="flex w-full flex-col items-center justify-center lg:relative">
-        {/* Background container - visible only on lg */}
+        {/* Background container  visible only on lg */}
         <div className="bg-accent-gray mx-auto mt-16 hidden h-80 w-8/12 rounded-4xl lg:block"></div>
 
         {/* Review cards container */}
-        <div className="mt-10 flex w-full flex-col items-center gap-6 sm:mt-12 sm:gap-8 md:flex-row md:flex-wrap md:justify-center md:gap-4 lg:absolute lg:top-8 lg:w-full lg:justify-center">
+        <div
+          ref={card}
+          className="mt-10 flex w-full flex-col items-center gap-6 sm:mt-12 sm:gap-8 md:flex-row md:flex-wrap md:justify-center md:gap-4 lg:absolute lg:top-20 lg:w-full lg:justify-center"
+        >
           {arr.map((item, i) => (
             <div
               key={i}

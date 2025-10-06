@@ -1,7 +1,49 @@
 import Sign from "/sign.svg";
 import { ArrowUpRight } from "lucide-react";
 
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { useRef } from "react";
+
 const Influencers = () => {
+  const heading = useRef();
+  const card = useRef();
+  const circular = useRef();
+
+  useGSAP(() => {
+    gsap
+      .timeline()
+      .from(heading.current, {
+        y: 50,
+        opacity: 0,
+        scale: 0.95,
+        duration: 0.8,
+        ease: "power3.out",
+        stagger: 0.15,
+
+        scrollTrigger: {
+          trigger: heading.current,
+          start: "top 70%",
+          end: "+=100",
+          scrub: 2,
+        },
+      })
+      .from(card.current.children, {
+        y: -50,
+        opacity: 0,
+        scale: 0.95,
+        duration: 0.8,
+        ease: "power3.out",
+        stagger: 0.15,
+        scrollTrigger: {
+          trigger: card.current,
+          start: "top 80%",
+          end: "+=100",
+          scrub: 2,
+        },
+      });
+  });
+
   const person = [
     {
       name: "Biruk Yoshitila",
@@ -15,7 +57,7 @@ const Influencers = () => {
   return (
     <section className="mx-auto mt-20 max-w-6xl px-4 sm:mt-32 sm:px-6 lg:px-8">
       {/* Heading */}
-      <div className="space-y-3 text-center sm:space-y-4">
+      <div ref={heading} className="space-y-3 text-center sm:space-y-4">
         <h1 className="font-heading text-4xl font-bold sm:text-4xl md:text-5xl">
           Our <span className="text-primary">Influencers</span>
         </h1>
@@ -26,7 +68,10 @@ const Influencers = () => {
       </div>
 
       {/* Cards Grid */}
-      <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <div
+        ref={card}
+        className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-2 lg:grid-cols-4"
+      >
         {person.map((item, index) => (
           <div
             key={index}

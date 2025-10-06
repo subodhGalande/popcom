@@ -10,6 +10,10 @@ import {
   Laptop,
 } from "lucide-react";
 
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { useRef } from "react";
+
 const items = [
   { icon: <Shirt className="text-primary" />, title: "Shirt" },
   { icon: <Ship className="text-primary" />, title: "Tank Tops" },
@@ -21,10 +25,62 @@ const items = [
 ];
 
 const Products = () => {
+  const heading = useRef();
+  const card = useRef();
+  const circular = useRef();
+
+  useGSAP(() => {
+    gsap
+      .timeline()
+      .from(heading.current, {
+        y: 50,
+        opacity: 0,
+        scale: 0.95,
+        duration: 0.8,
+        ease: "power3.out",
+        stagger: 0.15,
+
+        scrollTrigger: {
+          trigger: heading.current,
+          start: "top 70%",
+          end: "+=100",
+          scrub: 2,
+        },
+      })
+      .from(card.current.children, {
+        y: 50,
+        opacity: 0,
+        scale: 0.95,
+        duration: 0.8,
+        ease: "power3.out",
+        stagger: 0.15,
+        scrollTrigger: {
+          trigger: card.current,
+          start: "top 80%",
+          end: "+=100",
+          scrub: 2,
+        },
+      })
+      .from(circular.current.children, {
+        y: 50,
+        opacity: 0,
+        scale: 0.95,
+        duration: 0.8,
+        ease: "power3.out",
+        stagger: 0.15,
+        scrollTrigger: {
+          trigger: circular.current,
+          start: "top 90%",
+          end: "+=100",
+          scrub: 2,
+        },
+      });
+  });
+
   return (
     <section className="mx-auto mt-16 max-w-6xl px-4 sm:mt-32 sm:px-8">
       {/* Heading */}
-      <div className="space-y-4 text-center">
+      <div ref={heading} className="space-y-4 text-center">
         <h1 className="font-heading text-4xl font-bold sm:text-4xl md:text-5xl">
           Our <span className="text-primary">Products</span>
         </h1>
@@ -35,7 +91,10 @@ const Products = () => {
       </div>
 
       {/* Main cards */}
-      <div className="mt-10 grid grid-cols-2 gap-3 sm:mt-14 sm:grid-cols-4 sm:gap-6">
+      <div
+        ref={card}
+        className="mt-10 grid grid-cols-2 gap-3 sm:mt-14 sm:grid-cols-4 sm:gap-6"
+      >
         {[
           { icon: <Shirt />, text: "Physical Product" },
           { icon: <MonitorPlay />, text: "Digital Product" },
@@ -55,7 +114,10 @@ const Products = () => {
       </div>
 
       {/* Circular product icons */}
-      <div className="mt-12 flex flex-wrap justify-center gap-6 sm:mt-16 sm:gap-10">
+      <div
+        ref={circular}
+        className="mt-12 flex flex-wrap justify-center gap-6 sm:mt-16 sm:gap-10"
+      >
         {items.map((item, index) => (
           <div
             key={index}

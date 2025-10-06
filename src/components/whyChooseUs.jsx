@@ -18,7 +18,7 @@ const WhyChooseUs = () => {
 
         scrollTrigger: {
           trigger: section1Ref.current,
-          start: "top 50%",
+          start: "top 80%",
           end: "+=100",
           scrub: 2,
         },
@@ -32,7 +32,7 @@ const WhyChooseUs = () => {
         stagger: 0.15,
         scrollTrigger: {
           trigger: section2Ref.current,
-          start: "top 40%",
+          start: "top 90%",
           end: "+=100",
           scrub: 2,
         },
